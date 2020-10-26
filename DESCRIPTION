@@ -1,0 +1,24 @@
+Package: gglab
+Type: Package
+Title: Make plots for research more simply
+Version: 0.1.0
+Authors@R: person("Hidehito", "Okada", role = c("aut", "cre"), email = "hidefungi@gmail.com")
+Description: Make plots for research more simply.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Suggests: 
+    testthat
+RoxygenNote: 7.1.1
+Imports: 
+    dplyr,
+    tidyr,
+    tibble,
+    ggplot2,
+    glue,
+    patchwork,
+    scales,
+    grDevices,
+    ggtext
+Depends: 
+    R (>= 2.10)
