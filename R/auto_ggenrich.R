@@ -43,7 +43,7 @@ auto_ggenrich = function(
   rlt <- ggplot2::ggplot(.data, .mapping) +
     ggplot2::geom_errorbar(width = .width, size = .linesize) +
     ggplot2::geom_errorbarh(height = .height, size = .linesize) +
-    ggplot2::geom_richtext(hjust = .hjust, vjust = .vjust,
+    ggtext::geom_richtext(hjust = .hjust, vjust = .vjust,
                   fill = NA, label.color = NA,
                   size = 6, ...) +
     ggplot2::geom_point(size = .point_size, fill = "white", stroke = .stroke) +

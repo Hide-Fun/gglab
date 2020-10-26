@@ -19,6 +19,7 @@ Imports:
     patchwork,
     scales,
     grDevices,
-    ggtext
+    ggtext,
+    magrittr
 Depends: 
     R (>= 2.10)
