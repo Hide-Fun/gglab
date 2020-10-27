@@ -6,7 +6,7 @@
 \usage{
 auto_ggiso(
   .data,
-  .mapp = aes(...),
+  .mapping,
   .xlim,
   .ylim,
   .shape_val = c(16, 17, 24),
@@ -20,12 +20,15 @@ auto_ggiso(
   .size = 0.7,
   .stroke = 0.9,
   .point_size = 2,
+  .family = "Arial",
   .auto_fix = T,
   .ratio
 )
 }
 \arguments{
 \item{.data}{data}
+
+\item{.mapping}{mapping, wrapping by aes(), augments passing through geom_***.}
 
 \item{.xlim}{range of x axis.}
 
@@ -53,12 +56,49 @@ auto_ggiso(
 
 \item{.point_size}{size of point.}
 
+\item{.family}{font family, defalut Arial.}
+
 \item{.auto_fix}{fix ratio of plot automatically.}
 
 \item{.ratio}{ratio of plot.}
-
-\item{.mapping}{mapping, wrapping by aes(), augments passing through geom_***.}
 }
 \description{
 Make isotope plot with errobar automatically. If you regulate more options, use ggiso().
+}
+\examples{
+library(ggplot2)
+library(dplyr)
+
+data("demo")
+
+by_place <- demo \%>\%
+  group_by(place, label) \%>\%
+  summarise(across(where(is.numeric),
+                   list(mean = mean, sd = sd),
+                   .names = "{.fn}_{.col}"))
+
+place_A <- by_place \%>\%
+  filter(place == "A")
+
+auto_ggiso(.data = place_A,
+           .mapping = aes(x = mean_delta13C, y = mean_delta15N,
+                          xmin = mean_delta13C - sd_delta13C,
+                          xmax = mean_delta13C + sd_delta13C,
+                          ymin = mean_delta15N - sd_delta15N,
+                          ymax = mean_delta15N + sd_delta15N,
+                          shape = label,
+                          label = label),
+          .xlim = c(-36, -26),
+          .ylim = c(-6, 4),
+          .xlab = expression(paste(italic("δ"^{13}), "C", " (\u2030)")),
+          .ylab = expression(paste(italic("δ"^{15}), "N", " (\u2030)")),
+          .hjust = 0,
+          .vjust = 0,
+          .height = .2, .width = .2,
+          .shape_val = c(24, 21, 16, 23),
+          .breaks = 6,
+          .point_size = 3,
+          .family = NULL,
+          .auto_fix = TRUE,
+          .ratio = 1/2)
 }

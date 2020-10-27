@@ -14,22 +14,27 @@ reg_plot = function(
                           ymax = upr,
                           shape = shape,...),
   .breaks = scales::breaks_extended(n = n),
+  .linetype = "dashed",
+  .size,
+  .xlab,
+  .shape_val,
   .ylab)
 {
-  ggplot(.data, aes(x, y)) +
-    geom_ribbon(aes(x, ymin = lwr, ymax = upr),
-                fill = "white", colour = "black", linetype = "dotted") +
-    geom_point(aes(shape = type2)) +
-    geom_line(aes(x, fit), size = .5) +
-    scale_shape_manual(name = "morphology", yues = c(17, 15, 16)) +
-    scale_y_continuous(breaks = .breaks) +
-    theme_classic(base_family = "Arial") +
-    theme(axis.title = element_text(size = 10),
-          axis.title.y = ggtext::element_markdown(colour = "black"),
-          plot.margin = margin(.1*3, 0.3*3, .1*3, .1*3, "cm"),
-          legend.position = "none",
-          axis.line = element_line(size = .5),
-          axis.ticks = element_line(size = .7)) +
-    labs(x = .xlab,
-         y = .ylab)
+  ggplot2::ggplot(.data, .mapping) +
+    ggplot2::geom_ribbon(fill = "white",
+                         colour = "black",
+                         linetype = .linetype) +
+    ggplot2::geom_point() +
+    ggplot2::geom_line(size = .size) +
+    ggplot2::scale_shape_manual(value = .shape_val) +
+    ggplot2::scale_y_continuous(breaks = .breaks) +
+    ggplot2::theme_classic(base_family = "Arial") +
+    ggplot2::theme(axis.title = ggplot2::element_text(size = 10),
+                   axis.title.y = ggtext::element_markdown(colour = "black"),
+                   plot.margin = ggplot2::margin(.1*3, 0.3*3, .1*3, .1*3, "cm"),
+                   legend.position = "none",
+                   axis.line = ggplot2::element_line(size = .5),
+                   axis.ticks = ggplot2::element_line(size = .7)) +
+    ggplot2::labs(x = .xlab,
+                  y = .ylab)
 }

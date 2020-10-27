@@ -7,22 +7,23 @@
 auto_ggenrich(
   .data,
   .data_ref,
-  .mapping = aes(...),
-  .mapping_ref = aes(...),
+  .mapping,
+  .mapping_ref,
   .xlim,
   .ylim,
   .xlab,
   .ylab,
-  .point_size,
-  .stroke,
+  .point_size = 2,
+  .stroke = 0.2,
   .shape_val = c(16, 17, 24),
   .width = 0.2,
   .height = 0.2,
-  .linesize,
-  .linetype,
+  .linesize = 0.2,
+  .linetype = "dashed",
   .hjust = 0,
   .vjust = 0,
   .breaks,
+  .family = "Arial",
   .auto_fix = T,
   .ratio,
   ...
@@ -65,10 +66,69 @@ auto_ggenrich(
 
 \item{.breaks}{number of breaks.}
 
+\item{.family}{font family, default Arial.}
+
 \item{.auto_fix}{fix ratio of plot automatically.}
 
 \item{.ratio}{ratio of plot.}
+
+\item{...}{passed through ggtext::geom_richtext().}
 }
 \description{
 Make enrichment factor plot. If you regulate more options, use ggenrich().
+}
+\examples{
+library(ggplot2)
+library(dplyr)
+
+data("demo")
+
+# summarise data.
+by_place <- demo \%>\%
+  group_by(place, label) \%>\%
+  summarise(across(where(is.numeric),
+                   list(mean = mean, sd = sd),
+                   .names = "{.fn}_{.col}"))
+
+ref <- demo \%>\%
+    filter(type == "REF") \%>\%
+    group_by(place, label) \%>\%
+    summarise(across(where(is.numeric),
+                     list(mean = mean, sd = sd),
+                     .names = "{.fn}_{.col}"))
+
+# select "place is A".
+place_A <- by_place \%>\%
+    filter(place == "A")
+
+# reference data.
+place_A_ref <- ref \%>\%
+    filter(place == "A")
+
+
+# make plot.
+auto_ggenrich(.data = place_A,
+              .data_ref = place_A_ref,
+              .mapping = aes(x = mean_delta13C, y = mean_delta15N,
+                             xmin = mean_delta13C - sd_delta13C,
+                             xmax = mean_delta13C + sd_delta13C,
+                             ymin = mean_delta15N - sd_delta15N,
+                             ymax = mean_delta15N + sd_delta15N,
+                             shape = label,
+                             label = label),
+              .mapping_ref = aes(xmin = mean_epsilon13C - sd_epsilon13C,
+                                 xmax = mean_epsilon13C + sd_epsilon13C,
+                                 ymin = mean_epsilon15N - sd_epsilon15N,
+                                 ymax = mean_epsilon15N + sd_epsilon15N),
+              .xlim = c(-36, -26),
+              .ylim = c(-6, 4),
+              .xlab = expression(paste(italic("δ"^{13}), "C", " (\u2030)")),
+              .ylab = expression(paste(italic("δ"^{15}), "N", " (\u2030)")),
+              .hjust = 0, .vjust = 0,
+              .height = .2, .width = .2,
+              .shape_val = c(24, 21, 16, 23),
+              .breaks = 6,
+              .family = NULL,
+              .point_size = 3,
+              .ratio = 1/2)
 }

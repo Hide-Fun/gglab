@@ -5,7 +5,7 @@
 #' @param .intrspt intersept
 #' @param .expl explanatory variable.
 #' @param .parse parse
-#' @param .digit digit
+#' @param .digits digit
 lm_str = function(.resp = "y", .intrspt = NULL, .expl = NULL , .parse = T, .digits = 2) {
   if(.parse == T) {
     .intrspt <- as.character(round(.intrspt, digits = .digits))

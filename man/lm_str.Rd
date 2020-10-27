@@ -15,7 +15,7 @@ lm_str(.resp = "y", .intrspt = NULL, .expl = NULL, .parse = T, .digits = 2)
 
 \item{.parse}{parse}
 
-\item{.digit}{digit}
+\item{.digits}{digit}
 }
 \description{
 Make simple lm model equation as character.

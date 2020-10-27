@@ -8,6 +8,10 @@ reg_plot(
   .data,
   .mapping = ggplot2::aes(x = x, y = y, ymin = lwr, ymax = upr, shape = shape, ...),
   .breaks = scales::breaks_extended(n = n),
+  .linetype = "dashed",
+  .size,
+  .xlab,
+  .shape_val,
   .ylab
 )
 }
@@ -18,9 +22,9 @@ reg_plot(
 
 \item{.breaks}{number of break}
 
-\item{.ylab}{title of y axis}
-
 \item{.xlab}{title of x axis}
+
+\item{.ylab}{title of y axis}
 }
 \description{
 Make regression plot with intervals.
