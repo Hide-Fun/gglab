@@ -98,9 +98,9 @@ auto_ggiso = function(.data,
     ggplot2::ylab(.ylab) +
     ggplot2::xlab(.xlab)
   if(.auto_fix == T) {
-    ratio <- abs(.ylim[[1]] - .ylim[[2]]/.xlim[[1]] - .xlim[[2]])
+    stund <- abs(.ylim[[1]] - .ylim[[2]]/.xlim[[1]] - .xlim[[2]])
     rlt <- rlt +
-      coord_fixed(ratio*(1/ratio)*.ratio)
+      ggplot2::coord_fixed(stund*.ratio)
   }
   return(rlt)
 }
