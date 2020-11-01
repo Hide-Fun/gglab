@@ -19,6 +19,7 @@
 #' @param .family font family, defalut Arial.
 #' @param .auto_fix fix ratio of plot automatically.
 #' @param .ratio ratio of plot.
+#' @param .abs absolute size.
 #' @export
 #' @examples
 #' library(ggplot2)
@@ -68,7 +69,10 @@ auto_ggiso = function(.data,
                       .point_size = 2,
                       .family = "Arial",
                       .auto_fix = T,
-                      .ratio) {
+                      .ratio,
+                      .abs) {
+  .height <- .abs*abs((.ylim[[1]] - .ylim[[2]]))
+  .width <- .height
   if(.auto_fix == T) {
     stund <- abs((.xlim[[1]] - .xlim[[2]])/(.ylim[[1]] - .ylim[[2]]))
     if(stund > 1) {
