@@ -74,15 +74,15 @@ auto_ggiso = function(.data,
     if(stund > 1) {
       rlt <- ggplot2::ggplot(.data, .mapping) +
         ggplot2::geom_errorbar(width = .width, size = .size) +
-        ggplot2::geom_errorbarh(height = .height*.ratio, size = .size) +
+        ggplot2::geom_errorbarh(height = .height*(1/stund)*(1/.ratio), size = .size) +
         ggtext::geom_richtext(hjust = .hjust, vjust = .vjust,
                               fill = NA, label.color = NA,
                               size = 6) +
         ggplot2::geom_point(size = .point_size, fill = "white", stroke = .stroke)
     } else {
       rlt <- ggplot2::ggplot(.data, .mapping) +
-        ggplot2::geom_errorbar(width = .width*.ratio, size = .size) +
-        ggplot2::geom_errorbarh(height = .height, size = .size) +
+        ggplot2::geom_errorbar(width = .width, size = .size) +
+        ggplot2::geom_errorbarh(height = .height*(1/stund)*(1/.ratio), size = .size) +
         ggtext::geom_richtext(hjust = .hjust, vjust = .vjust,
                               fill = NA, label.color = NA,
                               size = 6) +

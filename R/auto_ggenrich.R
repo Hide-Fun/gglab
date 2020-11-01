@@ -102,7 +102,7 @@ auto_ggenrich = function(
     if (stund > 1) {
       rlt <- ggplot2::ggplot(.data, .mapping) +
         ggplot2::geom_errorbar(width = .width, size = .linesize) +
-        ggplot2::geom_errorbarh(height = .height*.ratio, size = .linesize) +
+        ggplot2::geom_errorbarh(height = .height*(1/stund)*(1/.ratio), size = .linesize*.ratio) +
         ggtext::geom_richtext(hjust = .hjust, vjust = .vjust,
                               fill = NA, label.color = NA,
                               size = 6, ...) +
@@ -117,8 +117,8 @@ auto_ggenrich = function(
                             linetype = .linetype, size = .linesize)
     } else {
       rlt <- ggplot2::ggplot(.data, .mapping) +
-        ggplot2::geom_errorbar(width = .width*.ratio, size = .linesize) +
-        ggplot2::geom_errorbarh(height = .height, size = .linesize) +
+        ggplot2::geom_errorbar(width = .width, size = .linesize) +
+        ggplot2::geom_errorbarh(height = .height*(1/stund)*(1/.ratio), size = .linesize) +
         ggtext::geom_richtext(hjust = .hjust, vjust = .vjust,
                               fill = NA, label.color = NA,
                               size = 6, ...) +
