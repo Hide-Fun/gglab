@@ -18,7 +18,7 @@ auto_ggenrich(
   .shape_val = c(16, 17, 24),
   .width = 0.2,
   .height = 0.2,
-  .linesize = 0.2,
+  .linesize = 0.7,
   .linetype = "dashed",
   .hjust = 0,
   .vjust = 0,
