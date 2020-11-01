@@ -153,7 +153,7 @@ auto_ggenrich = function(
       ggplot2::ylab(.ylab) +
       ggplot2::xlab(.xlab)
   } else {
-    rlt <- ggplot2::ggplot(.data, .mapping) +
+    rlt2 <- ggplot2::ggplot(.data, .mapping) +
       ggplot2::geom_errorbar(width = .width, size = .linesize) +
       ggplot2::geom_errorbarh(height = .height, size = .linesize) +
       ggtext::geom_richtext(hjust = .hjust, vjust = .vjust,
