@@ -22,8 +22,7 @@ auto_ggiso(
   .point_size = 2,
   .family = "Arial",
   .auto_fix = T,
-  .ratio,
-  .abs
+  .ratio
 )
 }
 \arguments{
@@ -62,8 +61,6 @@ auto_ggiso(
 \item{.auto_fix}{fix ratio of plot automatically.}
 
 \item{.ratio}{ratio of plot.}
-
-\item{.abs}{absolute size.}
 }
 \description{
 Make isotope plot with errobar automatically. If you regulate more options, use ggiso().
