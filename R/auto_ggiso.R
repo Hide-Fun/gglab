@@ -70,7 +70,7 @@ auto_ggiso = function(.data,
                       .auto_fix = T,
                       .ratio) {
   if(.auto_fix == T) {
-    stund <- abs((.xlim[[1]] - .xlim[[2]])/(.ylim[[1]] - .ylim[[2]]))
+    stund <- (.xlim[2] - .xlim[1])/(.ylim[2] - .ylim[1])
     rlt <- ggplot2::ggplot(.data, .mapping) +
       ggplot2::geom_errorbar(width = .width*(stund)*(.ratio), size = .size) +
       ggplot2::geom_errorbarh(height = .height, size = .size) +

@@ -98,10 +98,10 @@ auto_ggenrich = function(
   .ratio,
   ...) {
   if(.auto_fix == T) {
-    stund <- abs((.xlim[[1]] - .xlim[[2]])/(.ylim[[1]] - .ylim[[2]]))
+    stund <- (.xlim[2] - .xlim[1])/(.ylim[2] - .ylim[1])
     rlt <- ggplot2::ggplot(.data, .mapping) +
-      ggplot2::geom_errorbar(width = .width, size = .linesize) +
-      ggplot2::geom_errorbarh(height = .height*(1/stund)*(1/.ratio), size = .linesize) +
+      ggplot2::geom_errorbar(width = .width*(stund)*(.ratio), size = .linesize) +
+      ggplot2::geom_errorbarh(height = .height, size = .linesize) +
       ggtext::geom_richtext(hjust = .hjust, vjust = .vjust,
                             fill = NA, label.color = NA,
                             size = 6, ...) +
