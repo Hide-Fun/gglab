@@ -99,39 +99,21 @@ auto_ggenrich = function(
   ...) {
   if(.auto_fix == T) {
     stund <- abs((.xlim[[1]] - .xlim[[2]])/(.ylim[[1]] - .ylim[[2]]))
-    if (stund > 1) {
-      rlt <- ggplot2::ggplot(.data, .mapping) +
-        ggplot2::geom_errorbar(width = .width, size = .linesize) +
-        ggplot2::geom_errorbarh(height = .height*(1/stund)*(1/.ratio), size = .linesize) +
-        ggtext::geom_richtext(hjust = .hjust, vjust = .vjust,
-                              fill = NA, label.color = NA,
-                              size = 6, ...) +
-        ggplot2::geom_point(size = .point_size, fill = "white", stroke = .stroke) +
-        ggplot2::geom_rect(data = .data_ref, mapping = .mapping_ref,
-                           fill = "white", colour = "#028760") +
-        ggplot2::geom_hline(yintercept = 0,
-                            colour = "grey",
-                            linetype = .linetype, size = .linesize) +
-        ggplot2::geom_vline(xintercept = 0,
-                            colour = "grey",
-                            linetype = .linetype, size = .linesize)
-    } else {
-      rlt <- ggplot2::ggplot(.data, .mapping) +
-        ggplot2::geom_errorbar(width = .width, size = .linesize) +
-        ggplot2::geom_errorbarh(height = .height*(1/stund)*(1/.ratio), size = .linesize) +
-        ggtext::geom_richtext(hjust = .hjust, vjust = .vjust,
-                              fill = NA, label.color = NA,
-                              size = 6, ...) +
-        ggplot2::geom_point(size = .point_size, fill = "white", stroke = .stroke) +
-        ggplot2::geom_rect(data = .data_ref, mapping = .mapping_ref,
-                           fill = "white", colour = "#028760") +
-        ggplot2::geom_hline(yintercept = 0,
-                            colour = "grey",
-                            linetype = .linetype, size = .linesize) +
-        ggplot2::geom_vline(xintercept = 0,
-                            colour = "grey",
-                            linetype = .linetype, size = .linesize)
-    }
+    rlt <- ggplot2::ggplot(.data, .mapping) +
+      ggplot2::geom_errorbar(width = .width, size = .linesize) +
+      ggplot2::geom_errorbarh(height = .height*(1/stund)*(1/.ratio), size = .linesize) +
+      ggtext::geom_richtext(hjust = .hjust, vjust = .vjust,
+                            fill = NA, label.color = NA,
+                            size = 6, ...) +
+      ggplot2::geom_point(size = .point_size, fill = "white", stroke = .stroke) +
+      ggplot2::geom_rect(data = .data_ref, mapping = .mapping_ref,
+                         fill = "white", colour = "#028760") +
+      ggplot2::geom_hline(yintercept = 0,
+                          colour = "grey",
+                          linetype = .linetype, size = .linesize) +
+      ggplot2::geom_vline(xintercept = 0,
+                          colour = "grey",
+                          linetype = .linetype, size = .linesize)
     rlt2 <- rlt +
       ggplot2::scale_x_continuous(limits = .xlim,
                                   expand = c(0, 0),

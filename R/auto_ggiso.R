@@ -71,23 +71,14 @@ auto_ggiso = function(.data,
                       .ratio) {
   if(.auto_fix == T) {
     stund <- abs((.xlim[[1]] - .xlim[[2]])/(.ylim[[1]] - .ylim[[2]]))
-    if(stund > 1) {
-      rlt <- ggplot2::ggplot(.data, .mapping) +
-        ggplot2::geom_errorbar(width = .width, size = .size) +
-        ggplot2::geom_errorbarh(height = .height*(1/stund)*(1/.ratio), size = .size) +
-        ggtext::geom_richtext(hjust = .hjust, vjust = .vjust,
-                              fill = NA, label.color = NA,
-                              size = 6) +
-        ggplot2::geom_point(size = .point_size, fill = "white", stroke = .stroke)
-    } else {
-      rlt <- ggplot2::ggplot(.data, .mapping) +
-        ggplot2::geom_errorbar(width = .width, size = .size) +
-        ggplot2::geom_errorbarh(height = .height*(1/stund)*(1/.ratio), size = .size) +
-        ggtext::geom_richtext(hjust = .hjust, vjust = .vjust,
-                              fill = NA, label.color = NA,
-                              size = 6) +
-        ggplot2::geom_point(size = .point_size, fill = "white", stroke = .stroke)
-    }
+    rlt <- ggplot2::ggplot(.data, .mapping) +
+      ggplot2::geom_errorbar(width = .width*(stund)*(.ratio), size = .size) +
+      ggplot2::geom_errorbarh(height = .height, size = .size) +
+      ggtext::geom_richtext(hjust = .hjust, vjust = .vjust,
+                            fill = NA, label.color = NA,
+                            size = 6) +
+      ggplot2::geom_point(size = .point_size, fill = "white", stroke = .stroke)
+    # scales
     rlt2 <- rlt +
       ggplot2::scale_x_continuous(limits = .xlim,
                                   expand = c(0, 0),
