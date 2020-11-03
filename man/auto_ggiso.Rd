@@ -20,6 +20,7 @@ auto_ggiso(
   .size = 0.7,
   .stroke = 0.9,
   .point_size = 2,
+  .axis_size = 0.7,
   .family = "Arial",
   .auto_fix = T,
   .ratio

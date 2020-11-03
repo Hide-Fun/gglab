@@ -66,6 +66,7 @@ auto_ggiso = function(.data,
                       .breaks, .size = .7,
                       .stroke = .9,
                       .point_size = 2,
+                      .axis_size = .7,
                       .family = "Arial",
                       .auto_fix = T,
                       .ratio) {
@@ -97,8 +98,8 @@ auto_ggiso = function(.data,
                        colour = "black",
                        size = 15),
                      plot.margin = ggplot2::margin(.5, 1.5, .5, .5, "cm"),
-                     axis.line = ggplot2::element_line(size = .7),
-                     axis.ticks = ggplot2::element_line(size = .7)) +
+                     axis.line = ggplot2::element_line(size = .axis_size),
+                     axis.ticks = ggplot2::element_line(size = .axis_size)) +
       ggplot2::ylab(.ylab) +
       ggplot2::xlab(.xlab)
   } else {

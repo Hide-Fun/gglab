@@ -19,6 +19,7 @@ auto_ggenrich(
   .width = 0.2,
   .height = 0.2,
   .linesize = 0.7,
+  .axis_size = 0.7,
   .linetype = "dashed",
   .hjust = 0,
   .vjust = 0,

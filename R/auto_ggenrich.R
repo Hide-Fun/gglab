@@ -90,6 +90,7 @@ auto_ggenrich = function(
   .shape_val = c(16, 17, 24),
   .width = .2, .height = .2,
   .linesize = .7,
+  .axis_size = .7,
   .linetype = "dashed",
   .hjust = 0, .vjust = 0,
   .breaks,
@@ -130,8 +131,8 @@ auto_ggenrich = function(
                                                        colour = "black",
                                                        size = 15),
                      plot.margin = ggplot2::margin(.5, 1.5, .5, .5, "cm"),
-                     axis.line = ggplot2::element_line(size = .7),
-                     axis.ticks = ggplot2::element_line(size = .7)) +
+                     axis.line = ggplot2::element_line(size = .axis_size),
+                     axis.ticks = ggplot2::element_line(size = .axis_size)) +
       ggplot2::ylab(.ylab) +
       ggplot2::xlab(.xlab)
   } else {
@@ -158,8 +159,8 @@ auto_ggenrich = function(
                                                        colour = "black",
                                                        size = 15),
                      plot.margin = ggplot2::margin(.5, 1.5, .5, .5, "cm"),
-                     axis.line = ggplot2::element_line(size = .7),
-                     axis.ticks = ggplot2::element_line(size = .7)) +
+                     axis.line = ggplot2::element_line(size = .axis_size),
+                     axis.ticks = ggplot2::element_line(size = .axis_size)) +
       ggplot2::ylab(.ylab) +
       ggplot2::xlab(.xlab)
   }
