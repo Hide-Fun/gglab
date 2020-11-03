@@ -108,7 +108,7 @@ auto_ggenrich = function(
                           colour = "grey",
                           linetype = .linetype, size = .linesize) +
       ggplot2::geom_rect(data = .data_ref, mapping = .mapping_ref,
-                         fill = "white", colour = "#028760", size = .linesize) +
+                         fill = NA, colour = "#028760", size = .linesize) +
       ggplot2::geom_errorbar(width = .width*(stund)*(.ratio), size = .linesize) +
       ggplot2::geom_errorbarh(height = .height, size = .linesize) +
       ggtext::geom_richtext(hjust = .hjust, vjust = .vjust,
