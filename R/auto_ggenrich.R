@@ -108,7 +108,7 @@ auto_ggenrich = function(
                             size = 6, ...) +
       ggplot2::geom_point(size = .point_size, fill = "white", stroke = .stroke) +
       ggplot2::geom_rect(data = .data_ref, mapping = .mapping_ref,
-                         fill = "white", colour = "#028760") +
+                         fill = "white", colour = "#028760", size = .linesize) +
       ggplot2::geom_hline(yintercept = 0,
                           colour = "grey",
                           linetype = .linetype, size = .linesize) +

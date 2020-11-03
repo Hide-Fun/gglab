@@ -17,7 +17,7 @@ auto_ggiso(
   .hjust = 0,
   .vjust = 0,
   .breaks,
-  .size = 0.7,
+  .linesize = 0.7,
   .stroke = 0.9,
   .point_size = 2,
   .axis_size = 0.7,
@@ -51,7 +51,7 @@ auto_ggiso(
 
 \item{.breaks}{number of breaks.}
 
-\item{.size}{width of line in errorbar.}
+\item{.linesize}{width of line in errorbar.}
 
 \item{.stroke}{edge of point}
 

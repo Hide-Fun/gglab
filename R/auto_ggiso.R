@@ -12,7 +12,7 @@
 #' @param .shape_val shape of point, passing scale_shape_manual().
 #' @param .width width of errorbar.
 #' @param .height height of errorbar.
-#' @param .size width of line in errorbar.
+#' @param .linesize width of line in errorbar.
 #' @param .hjust place of label (horizontal).
 #' @param .vjust place of label (vertical).
 #' @param .breaks number of breaks.
@@ -63,7 +63,8 @@ auto_ggiso = function(.data,
                       .xlab, .ylab,
                       .height = .2, .width = 0.2,
                       .hjust = 0, .vjust = 0,
-                      .breaks, .size = .7,
+                      .breaks,
+                      .linesize = .7,
                       .stroke = .9,
                       .point_size = 2,
                       .axis_size = .7,
@@ -73,8 +74,8 @@ auto_ggiso = function(.data,
   if(.auto_fix == T) {
     stund <- (.xlim[2] - .xlim[1])/(.ylim[2] - .ylim[1])
     rlt <- ggplot2::ggplot(.data, .mapping) +
-      ggplot2::geom_errorbar(width = .width*(stund)*(.ratio), size = .size) +
-      ggplot2::geom_errorbarh(height = .height, size = .size) +
+      ggplot2::geom_errorbar(width = .width*(stund)*(.ratio), size = .linesize) +
+      ggplot2::geom_errorbarh(height = .height, size = .linesize) +
       ggtext::geom_richtext(hjust = .hjust, vjust = .vjust,
                             fill = NA, label.color = NA,
                             size = 6) +
