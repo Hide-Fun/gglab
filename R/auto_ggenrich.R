@@ -18,7 +18,8 @@
 #' @param .linetype dashed or dotted and so on.
 #' @param .hjust place of label (horizontal).
 #' @param .vjust place of label (vertical).
-#' @param .breaks number of breaks.
+#' @param .x_breaks break of x.
+#' @param .y_breaks break of y.
 #' @param .family font family, default Arial.
 #' @param .auto_fix fix ratio of plot automatically.
 #' @param .ratio ratio of plot.
@@ -77,7 +78,8 @@
 #'               .linesize = .8,
 #'               .axis_size = .8,
 #'               .shape_val = c(24, 21, 16, 23),
-#'               .breaks = 6,
+#'               .x_breaks = scales::breaks_extended(6),
+#'               .y_breaks = scales::breaks_extended(6),
 #'               .family = NULL,
 #'               .point_size = 3,
 #'               .ratio = 1/2)
@@ -96,7 +98,8 @@ auto_ggenrich = function(
   .axis_size = .8,
   .linetype = "dashed",
   .hjust = 0, .vjust = 0,
-  .breaks,
+  .x_breaks = scales::breaks_extended(6),
+  .y_breaks = scales::breaks_extended(6),
   .family = "Arial",
   .auto_fix = T,
   .ratio,
@@ -122,10 +125,10 @@ auto_ggenrich = function(
     rlt2 <- rlt +
       ggplot2::scale_x_continuous(limits = .xlim,
                                   expand = c(0, 0),
-                                  breaks = scales::extended_breaks(.breaks)) +
+                                  breaks = .x_breaks) +
       ggplot2::scale_y_continuous(limits = .ylim,
                                   expand = c(0, 0),
-                                  breaks = scales::extended_breaks(.breaks)) +
+                                  breaks = .y_breaks) +
       ggplot2::scale_shape_manual(values = .shape_val) +
       ggplot2::theme_classic(base_family = .family) +
       ggplot2::theme(legend.position = "none",

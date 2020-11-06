@@ -16,7 +16,8 @@ auto_ggiso(
   .width = 0.2,
   .hjust = 0,
   .vjust = 0,
-  .breaks,
+  .x_breaks = scales::breaks_extended(6),
+  .y_breaks = scales::breaks_extended(6),
   .linesize = 0.8,
   .stroke = 1,
   .point_size = 2,
@@ -49,7 +50,9 @@ auto_ggiso(
 
 \item{.vjust}{place of label (vertical).}
 
-\item{.breaks}{number of breaks.}
+\item{.x_breaks}{break of x.}
+
+\item{.y_breaks}{break of y.}
 
 \item{.linesize}{width of line in errorbar.}
 
@@ -100,7 +103,8 @@ auto_ggiso(.data = place_A,
           .stroke = 1,
           .axis_size = .8,
           .linesize = .8,
-          .breaks = 6,
+          .x_breaks = scales::breaks_extended(6),
+          .y_breaks = scales::breaks_extended(6),
           .point_size = 3,
           .family = NULL,
           .auto_fix = TRUE,

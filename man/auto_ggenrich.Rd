@@ -23,7 +23,8 @@ auto_ggenrich(
   .linetype = "dashed",
   .hjust = 0,
   .vjust = 0,
-  .breaks,
+  .x_breaks = scales::breaks_extended(6),
+  .y_breaks = scales::breaks_extended(6),
   .family = "Arial",
   .auto_fix = T,
   .ratio,
@@ -65,7 +66,9 @@ auto_ggenrich(
 
 \item{.vjust}{place of label (vertical).}
 
-\item{.breaks}{number of breaks.}
+\item{.x_breaks}{break of x.}
+
+\item{.y_breaks}{break of y.}
 
 \item{.family}{font family, default Arial.}
 
@@ -131,7 +134,8 @@ auto_ggenrich(.data = place_A,
               .linesize = .8,
               .axis_size = .8,
               .shape_val = c(24, 21, 16, 23),
-              .breaks = 6,
+              .x_breaks = scales::breaks_extended(6),
+              .y_breaks = scales::breaks_extended(6),
               .family = NULL,
               .point_size = 3,
               .ratio = 1/2)

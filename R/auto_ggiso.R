@@ -15,7 +15,8 @@
 #' @param .linesize width of line in errorbar.
 #' @param .hjust place of label (horizontal).
 #' @param .vjust place of label (vertical).
-#' @param .breaks number of breaks.
+#' @param .x_breaks break of x.
+#' @param .y_breaks break of y.
 #' @param .family font family, defalut Arial.
 #' @param .auto_fix fix ratio of plot automatically.
 #' @param .ratio ratio of plot.
@@ -54,7 +55,8 @@
 #'           .stroke = 1,
 #'           .axis_size = .8,
 #'           .linesize = .8,
-#'           .breaks = 6,
+#'           .x_breaks = scales::breaks_extended(6),
+#'           .y_breaks = scales::breaks_extended(6),
 #'           .point_size = 3,
 #'           .family = NULL,
 #'           .auto_fix = TRUE,
@@ -66,7 +68,8 @@ auto_ggiso = function(.data,
                       .xlab, .ylab,
                       .height = .2, .width = 0.2,
                       .hjust = 0, .vjust = 0,
-                      .breaks,
+                      .x_breaks = scales::breaks_extended(6),
+                      .y_breaks = scales::breaks_extended(6),
                       .linesize = .8,
                       .stroke = 1,
                       .point_size = 2,
@@ -87,10 +90,10 @@ auto_ggiso = function(.data,
     rlt2 <- rlt +
       ggplot2::scale_x_continuous(limits = .xlim,
                                   expand = c(0, 0),
-                                  breaks = scales::extended_breaks(.breaks)) +
+                                  breaks = .x_breaks) +
       ggplot2::scale_y_continuous(limits = .ylim,
                                   expand = c(0, 0),
-                                  breaks = scales::extended_breaks(.breaks)) +
+                                  breaks = .y_breaks) +
       ggplot2::scale_shape_manual(values = .shape_val) +
       ggplot2::theme_classic(base_family = .family) +
       ggplot2::theme(legend.position = "none",
@@ -110,10 +113,10 @@ auto_ggiso = function(.data,
   rlt2 <- rlt +
     ggplot2::scale_x_continuous(limits = .xlim,
                                 expand = c(0, 0),
-                                breaks = scales::extended_breaks(.breaks)) +
+                                breaks = .x_breaks) +
     ggplot2::scale_y_continuous(limits = .ylim,
                               expand = c(0, 0),
-                              breaks = scales::extended_breaks(.breaks)) +
+                              breaks = .y_breaks) +
     ggplot2::scale_shape_manual(values = .shape_val) +
     ggplot2::theme_classic(base_family = .family) +
     ggplot2::theme(legend.position = "none",
