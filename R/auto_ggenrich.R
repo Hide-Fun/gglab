@@ -21,6 +21,7 @@
 #' @param .x_breaks break of x.
 #' @param .y_breaks break of y.
 #' @param .family font family, default Arial.
+#' @param .label_size label size.
 #' @param .lab_title_size axis title.
 #' @param .lab_text_size axis text
 #' @param .ratio ratio of plot.
