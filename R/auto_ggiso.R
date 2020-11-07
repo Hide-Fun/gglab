@@ -82,16 +82,16 @@ auto_ggiso = function(.data,
                       .lab_text_size = 12,
                       .ratio,
                       ...) {
-    stund <- (.xlim[2] - .xlim[1])/(.ylim[2] - .ylim[1])
-    rlt <- ggplot2::ggplot(.data, .mapping) +
+  # make plot.
+  rlt <- ggplot2::ggplot(.data, .mapping) +
       ggplot2::geom_errorbar(width = .width*(stund)*(.ratio), size = .linesize) +
       ggplot2::geom_errorbarh(height = .height, size = .linesize) +
       ggtext::geom_richtext(hjust = .hjust, vjust = .vjust,
                             fill = NA, label.color = NA,
                             size = 6) +
       ggplot2::geom_point(size = .point_size, fill = "white", stroke = .stroke)
-    # scales
-    rlt2 <- rlt +
+    # scales and theme
+  rlt2 <- rlt +
       ggplot2::scale_x_continuous(limits = .xlim,
                                   expand = c(0, 0),
                                   breaks = .x_breaks) +
@@ -114,6 +114,8 @@ auto_ggiso = function(.data,
                      ...) +
       ggplot2::ylab(.ylab) +
       ggplot2::xlab(.xlab)
+  # calculate and slenderize ratio.
+  stund <- (.xlim[2] - .xlim[1])/(.ylim[2] - .ylim[1])
   result <- rlt2 + ggplot2::coord_fixed(stund*.ratio)
   return(result)
 }
