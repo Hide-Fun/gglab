@@ -17,7 +17,9 @@
 #' @param .vjust place of label (vertical).
 #' @param .x_breaks break of x.
 #' @param .y_breaks break of y.
-#' @param .family font family, defalut Arial.
+#' @param .family font family, default Arial.
+#' @param .lab_title_size axis title.
+#' @param .lab_text_size axis text.
 #' @param .auto_fix fix ratio of plot automatically.
 #' @param .ratio ratio of plot.
 #' @export
@@ -59,6 +61,8 @@
 #'           .y_breaks = scales::breaks_extended(6),
 #'           .point_size = 3,
 #'           .family = NULL,
+#'           .lab_text_size = 15,
+#'           .lab_text_size = 12,
 #'           .auto_fix = TRUE,
 #'           .ratio = 1/2)
 auto_ggiso = function(.data,
@@ -75,6 +79,8 @@ auto_ggiso = function(.data,
                       .point_size = 2,
                       .axis_size = .8,
                       .family = "Arial",
+                      .lab_text_size = 15,
+                      .lab_text_size = 12,
                       .auto_fix = T,
                       .ratio) {
   if(.auto_fix == T) {
@@ -99,11 +105,11 @@ auto_ggiso = function(.data,
       ggplot2::theme(legend.position = "none",
                      axis.title = ggplot2::element_text(
                        face = "bold",
-                       size = 20),
+                       size = .lab_title_size),
                      axis.text = ggplot2::element_text(
                        face = "bold",
                        colour = "black",
-                       size = 15),
+                       size = .lab_text_size),
                      plot.margin = ggplot2::margin(.5, 1.5, .5, .5, "cm"),
                      axis.line = ggplot2::element_line(size = .axis_size),
                      axis.ticks = ggplot2::element_line(size = .axis_size)) +
@@ -122,11 +128,11 @@ auto_ggiso = function(.data,
     ggplot2::theme(legend.position = "none",
                  axis.title = ggplot2::element_text(
                    face = "bold",
-                   size = 20),
+                   size = .lab_title_size),
                  axis.text = ggplot2::element_text(
                    face = "bold",
                    colour = "black",
-                   size = 15),
+                   size = .lab_text_size),
                  plot.margin = ggplot2::margin(.5, 1.5, .5, .5, "cm"),
                  axis.line = ggplot2::element_line(size = .7),
                  axis.ticks = ggplot2::element_line(size = .7)) +

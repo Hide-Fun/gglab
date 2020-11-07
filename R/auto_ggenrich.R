@@ -21,6 +21,8 @@
 #' @param .x_breaks break of x.
 #' @param .y_breaks break of y.
 #' @param .family font family, default Arial.
+#' @param .lab_title_size axis title.
+#' @param .lab_text_size axis text
 #' @param .auto_fix fix ratio of plot automatically.
 #' @param .ratio ratio of plot.
 #' @param ... passed through ggtext::geom_richtext().
@@ -81,6 +83,8 @@
 #'               .x_breaks = scales::breaks_extended(6),
 #'               .y_breaks = scales::breaks_extended(6),
 #'               .family = NULL,
+#'               .lab_title_size = 15,
+#'               .lab_text_size = 12,
 #'               .point_size = 3,
 #'               .ratio = 1/2)
 auto_ggenrich = function(
@@ -101,6 +105,8 @@ auto_ggenrich = function(
   .x_breaks = scales::breaks_extended(6),
   .y_breaks = scales::breaks_extended(6),
   .family = "Arial",
+  .lab_title_size = 15,
+  .lab_text_size = 12,
   .auto_fix = T,
   .ratio,
   ...) {
@@ -133,10 +139,10 @@ auto_ggenrich = function(
       ggplot2::theme_classic(base_family = .family) +
       ggplot2::theme(legend.position = "none",
                      axis.title = ggplot2::element_text(face = "bold",
-                                                        size = 20),
+                                                        size = .lab_title_size),
                      axis.text = ggplot2::element_text(face = "bold",
                                                        colour = "black",
-                                                       size = 15),
+                                                       size = .lab_text_size),
                      plot.margin = ggplot2::margin(.5, 1.5, .5, .5, "cm"),
                      axis.line = ggplot2::element_line(size = .axis_size),
                      axis.ticks = ggplot2::element_line(size = .axis_size)) +
@@ -161,10 +167,10 @@ auto_ggenrich = function(
       ggplot2::theme_classic(base_family = .family) +
       ggplot2::theme(legend.position = "none",
                      axis.title = ggplot2::element_text(face = "bold",
-                                                        size = 20),
+                                                        size = .lab_title_size),
                      axis.text = ggplot2::element_text(face = "bold",
                                                        colour = "black",
-                                                       size = 15),
+                                                       size = .lab_text_size),
                      plot.margin = ggplot2::margin(.5, 1.5, .5, .5, "cm"),
                      axis.line = ggplot2::element_line(size = .axis_size),
                      axis.ticks = ggplot2::element_line(size = .axis_size)) +
