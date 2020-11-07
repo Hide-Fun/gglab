@@ -80,7 +80,7 @@ auto_ggiso = function(.data,
                       .point_size = 2,
                       .axis_size = .8,
                       .family = "Arial",
-                      .lab_text_size = 15,
+                      .lab_title_size = 15,
                       .lab_text_size = 12,
                       .ratio,
                       ...) {
