@@ -23,7 +23,6 @@
 #' @param .family font family, default Arial.
 #' @param .lab_title_size axis title.
 #' @param .lab_text_size axis text
-#' @param .auto_fix fix ratio of plot automatically.
 #' @param .ratio ratio of plot.
 #' @param ... passed through theme().
 #' @export
@@ -107,10 +106,8 @@ auto_ggenrich = function(
   .family = "Arial",
   .lab_title_size = 15,
   .lab_text_size = 12,
-  .auto_fix = T,
   .ratio,
   ...) {
-  if(.auto_fix == T) {
     stund <- (.xlim[2] - .xlim[1])/(.ylim[2] - .ylim[1])
     rlt <- ggplot2::ggplot(.data, .mapping) +
       ggplot2::geom_hline(yintercept = 0,
@@ -149,36 +146,6 @@ auto_ggenrich = function(
                      ...) +
       ggplot2::ylab(.ylab) +
       ggplot2::xlab(.xlab)
-  } else {
-    rlt2 <- ggplot2::ggplot(.data, .mapping) +
-      ggplot2::geom_errorbar(width = .width, size = .linesize) +
-      ggplot2::geom_errorbarh(height = .height, size = .linesize) +
-      ggtext::geom_richtext(hjust = .hjust, vjust = .vjust,
-                            fill = NA, label.color = NA,
-                            size = 6, ...) +
-      ggplot2::geom_point(size = .point_size, fill = "white", stroke = .stroke) +
-      ggplot2::geom_rect(data = .data_ref, mapping = .mapping_ref,
-                         fill = NA, colour = "#028760") +
-      ggplot2::geom_hline(yintercept = 0,
-                          colour = "grey",
-                          linetype = .linetype, size = .linesize) +
-      ggplot2::geom_vline(xintercept = 0,
-                          colour = "grey",
-                          linetype = .linetype, size = .linesize) +
-      ggplot2::theme_classic(base_family = .family) +
-      ggplot2::theme(legend.position = "none",
-                     axis.title = ggplot2::element_text(face = "bold",
-                                                        size = .lab_title_size),
-                     axis.text = ggplot2::element_text(face = "bold",
-                                                       colour = "black",
-                                                       size = .lab_text_size),
-                     plot.margin = ggplot2::margin(.5, 1.5, .5, .5, "cm"),
-                     axis.line = ggplot2::element_line(size = .axis_size),
-                     axis.ticks = ggplot2::element_line(size = .axis_size),
-                     ...) +
-      ggplot2::ylab(.ylab) +
-      ggplot2::xlab(.xlab)
-  }
   result <- rlt2 + ggplot2::coord_fixed(stund*.ratio)
   return(result)
 }
