@@ -145,6 +145,7 @@ auto_ggenrich(.data = place_A,
               .family = NULL,
               .lab_title_size = 15,
               .lab_text_size = 12,
+              .label_size = 4,
               .point_size = 3,
               .ratio = 1/2)
 }

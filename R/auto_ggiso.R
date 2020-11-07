@@ -63,7 +63,7 @@
 #'           .point_size = 3,
 #'           .family = NULL,
 #'           .label_size = 4,
-#'           .lab_text_size = 15,
+#'           .lab_title_size = 15,
 #'           .lab_text_size = 12,
 #'           .ratio = 1/2)
 auto_ggiso = function(.data,
@@ -82,6 +82,7 @@ auto_ggiso = function(.data,
                       .family = "Arial",
                       .lab_title_size = 15,
                       .lab_text_size = 12,
+                      .label_size = 4,
                       .ratio,
                       ...) {
   # calculate and slenderize ratio.

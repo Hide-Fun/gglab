@@ -25,6 +25,7 @@ auto_ggiso(
   .family = "Arial",
   .lab_title_size = 15,
   .lab_text_size = 12,
+  .label_size = 4,
   .ratio,
   ...
 )
@@ -68,11 +69,11 @@ auto_ggiso(
 
 \item{.lab_text_size}{axis text.}
 
+\item{.label_size}{label size.}
+
 \item{.ratio}{ratio of plot.}
 
 \item{...}{passed through theme().}
-
-\item{.label_size}{label size.}
 }
 \description{
 Make isotope plot with errobar automatically. If you regulate more options, use ggiso().
@@ -116,7 +117,7 @@ auto_ggiso(.data = place_A,
           .point_size = 3,
           .family = NULL,
           .label_size = 4,
-          .lab_text_size = 15,
+          .lab_title_size = 15,
           .lab_text_size = 12,
           .ratio = 1/2)
 }
