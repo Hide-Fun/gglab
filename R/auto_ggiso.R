@@ -22,6 +22,7 @@
 #' @param .lab_text_size axis text.
 #' @param .auto_fix fix ratio of plot automatically.
 #' @param .ratio ratio of plot.
+#' @param ... passed through theme().
 #' @export
 #' @examples
 #' library(ggplot2)
@@ -82,7 +83,8 @@ auto_ggiso = function(.data,
                       .lab_text_size = 15,
                       .lab_text_size = 12,
                       .auto_fix = T,
-                      .ratio) {
+                      .ratio,
+                      ...) {
   if(.auto_fix == T) {
     stund <- (.xlim[2] - .xlim[1])/(.ylim[2] - .ylim[1])
     rlt <- ggplot2::ggplot(.data, .mapping) +
@@ -112,7 +114,8 @@ auto_ggiso = function(.data,
                        size = .lab_text_size),
                      plot.margin = ggplot2::margin(.5, 1.5, .5, .5, "cm"),
                      axis.line = ggplot2::element_line(size = .axis_size),
-                     axis.ticks = ggplot2::element_line(size = .axis_size)) +
+                     axis.ticks = ggplot2::element_line(size = .axis_size),
+                     ...) +
       ggplot2::ylab(.ylab) +
       ggplot2::xlab(.xlab)
   } else {
@@ -135,7 +138,8 @@ auto_ggiso = function(.data,
                    size = .lab_text_size),
                  plot.margin = ggplot2::margin(.5, 1.5, .5, .5, "cm"),
                  axis.line = ggplot2::element_line(size = .7),
-                 axis.ticks = ggplot2::element_line(size = .7)) +
+                 axis.ticks = ggplot2::element_line(size = .7),
+                 ...) +
   ggplot2::ylab(.ylab) +
   ggplot2::xlab(.xlab)
   }

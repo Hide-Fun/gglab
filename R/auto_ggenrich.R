@@ -25,7 +25,7 @@
 #' @param .lab_text_size axis text
 #' @param .auto_fix fix ratio of plot automatically.
 #' @param .ratio ratio of plot.
-#' @param ... passed through ggtext::geom_richtext().
+#' @param ... passed through theme().
 #' @export
 #' @examples
 #' library(ggplot2)
@@ -125,7 +125,7 @@ auto_ggenrich = function(
       ggplot2::geom_errorbarh(height = .height, size = .linesize) +
       ggtext::geom_richtext(hjust = .hjust, vjust = .vjust,
                             fill = NA, label.color = NA,
-                            size = 6, ...) +
+                            size = 6) +
       ggplot2::geom_point(size = .point_size, fill = "white", stroke = .stroke)
 
     rlt2 <- rlt +
@@ -145,7 +145,8 @@ auto_ggenrich = function(
                                                        size = .lab_text_size),
                      plot.margin = ggplot2::margin(.5, 1.5, .5, .5, "cm"),
                      axis.line = ggplot2::element_line(size = .axis_size),
-                     axis.ticks = ggplot2::element_line(size = .axis_size)) +
+                     axis.ticks = ggplot2::element_line(size = .axis_size),
+                     ...) +
       ggplot2::ylab(.ylab) +
       ggplot2::xlab(.xlab)
   } else {
@@ -173,7 +174,8 @@ auto_ggenrich = function(
                                                        size = .lab_text_size),
                      plot.margin = ggplot2::margin(.5, 1.5, .5, .5, "cm"),
                      axis.line = ggplot2::element_line(size = .axis_size),
-                     axis.ticks = ggplot2::element_line(size = .axis_size)) +
+                     axis.ticks = ggplot2::element_line(size = .axis_size),
+                     ...) +
       ggplot2::ylab(.ylab) +
       ggplot2::xlab(.xlab)
   }
