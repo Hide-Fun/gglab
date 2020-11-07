@@ -23,8 +23,10 @@ auto_ggiso(
   .point_size = 2,
   .axis_size = 0.8,
   .family = "Arial",
-  .auto_fix = T,
-  .ratio
+  .lab_title_size = 15,
+  .lab_text_size = 12,
+  .ratio,
+  ...
 )
 }
 \arguments{
@@ -60,11 +62,17 @@ auto_ggiso(
 
 \item{.point_size}{size of point.}
 
-\item{.family}{font family, defalut Arial.}
+\item{.family}{font family, default Arial.}
 
-\item{.auto_fix}{fix ratio of plot automatically.}
+\item{.lab_title_size}{axis title.}
+
+\item{.lab_text_size}{axis text.}
 
 \item{.ratio}{ratio of plot.}
+
+\item{...}{passed through theme().}
+
+\item{.label_size}{label size.}
 }
 \description{
 Make isotope plot with errobar automatically. If you regulate more options, use ggiso().
@@ -107,6 +115,8 @@ auto_ggiso(.data = place_A,
           .y_breaks = scales::breaks_extended(6),
           .point_size = 3,
           .family = NULL,
-          .auto_fix = TRUE,
+          .label_size = 4,
+          .lab_text_size = 15,
+          .lab_text_size = 12,
           .ratio = 1/2)
 }

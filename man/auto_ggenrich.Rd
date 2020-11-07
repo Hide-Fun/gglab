@@ -26,7 +26,9 @@ auto_ggenrich(
   .x_breaks = scales::breaks_extended(6),
   .y_breaks = scales::breaks_extended(6),
   .family = "Arial",
-  .auto_fix = T,
+  .label_size = 4,
+  .lab_title_size = 15,
+  .lab_text_size = 12,
   .ratio,
   ...
 )
@@ -72,11 +74,15 @@ auto_ggenrich(
 
 \item{.family}{font family, default Arial.}
 
-\item{.auto_fix}{fix ratio of plot automatically.}
+\item{.label_size}{label size.}
+
+\item{.lab_title_size}{axis title.}
+
+\item{.lab_text_size}{axis text}
 
 \item{.ratio}{ratio of plot.}
 
-\item{...}{passed through ggtext::geom_richtext().}
+\item{...}{passed through theme().}
 }
 \description{
 Make enrichment factor plot. If you regulate more options, use ggenrich().
@@ -113,11 +119,11 @@ place_A_ref <- ref \%>\%
 # make plot.
 auto_ggenrich(.data = place_A,
               .data_ref = place_A_ref,
-              .mapping = aes(x = mean_delta13C, y = mean_delta15N,
-                             xmin = mean_delta13C - sd_delta13C,
-                             xmax = mean_delta13C + sd_delta13C,
-                             ymin = mean_delta15N - sd_delta15N,
-                             ymax = mean_delta15N + sd_delta15N,
+              .mapping = aes(x = mean_epsilon13C, y = mean_epsilon15N,
+                             xmin = mean_epsilon13C - sd_epsilon13C,
+                             xmax = mean_epsilon13C + sd_epsilon13C,
+                             ymin = mean_epsilon15N - sd_epsilon15N,
+                             ymax = mean_epsilon15N + sd_epsilon15N,
                              shape = label,
                              label = label),
               .mapping_ref = aes(xmin = mean_epsilon13C - sd_epsilon13C,
@@ -137,6 +143,8 @@ auto_ggenrich(.data = place_A,
               .x_breaks = scales::breaks_extended(6),
               .y_breaks = scales::breaks_extended(6),
               .family = NULL,
+              .lab_title_size = 15,
+              .lab_text_size = 12,
               .point_size = 3,
               .ratio = 1/2)
 }

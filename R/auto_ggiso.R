@@ -84,6 +84,8 @@ auto_ggiso = function(.data,
                       .lab_text_size = 12,
                       .ratio,
                       ...) {
+  # calculate and slenderize ratio.
+  stund <- (.xlim[2] - .xlim[1])/(.ylim[2] - .ylim[1])
   # make plot.
   rlt <- ggplot2::ggplot(.data, .mapping) +
       ggplot2::geom_errorbar(width = .width*(stund)*(.ratio), size = .linesize) +

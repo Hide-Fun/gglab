@@ -110,6 +110,8 @@ auto_ggenrich = function(
   .lab_text_size = 12,
   .ratio,
   ...) {
+  # calculate and slenderize ratio.
+  stund <- (.xlim[2] - .xlim[1])/(.ylim[2] - .ylim[1])
   # make plot.
   rlt <- ggplot2::ggplot(.data, .mapping) +
       ggplot2::geom_hline(yintercept = 0,
@@ -149,7 +151,6 @@ auto_ggenrich = function(
       ggplot2::ylab(.ylab) +
       ggplot2::xlab(.xlab)
   # calculate and slenderize ratio.
-  stund <- (.xlim[2] - .xlim[1])/(.ylim[2] - .ylim[1])
   result <- rlt2 + ggplot2::coord_fixed(stund*.ratio)
   return(result)
 }
