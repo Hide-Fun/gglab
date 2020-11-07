@@ -58,11 +58,11 @@
 #' # make plot.
 #' auto_ggenrich(.data = place_A,
 #'               .data_ref = place_A_ref,
-#'               .mapping = aes(x = mean_delta13C, y = mean_delta15N,
-#'                              xmin = mean_delta13C - sd_delta13C,
-#'                              xmax = mean_delta13C + sd_delta13C,
-#'                              ymin = mean_delta15N - sd_delta15N,
-#'                              ymax = mean_delta15N + sd_delta15N,
+#'               .mapping = aes(x = mean_epsilon13C, y = mean_epsilon15N,
+#'                              xmin = mean_epsilon13C - sd_epsilon13C,
+#'                              xmax = mean_epsilon13C + sd_epsilon13C,
+#'                              ymin = mean_epsilon15N - sd_epsilon15N,
+#'                              ymax = mean_epsilon15N + sd_epsilon15N,
 #'                              shape = label,
 #'                              label = label),
 #'               .mapping_ref = aes(xmin = mean_epsilon13C - sd_epsilon13C,
@@ -104,6 +104,7 @@ auto_ggenrich = function(
   .x_breaks = scales::breaks_extended(6),
   .y_breaks = scales::breaks_extended(6),
   .family = "Arial",
+  .label_size = 4,
   .lab_title_size = 15,
   .lab_text_size = 12,
   .ratio,
@@ -122,7 +123,7 @@ auto_ggenrich = function(
       ggplot2::geom_errorbarh(height = .height, size = .linesize) +
       ggtext::geom_richtext(hjust = .hjust, vjust = .vjust,
                             fill = NA, label.color = NA,
-                            size = 6) +
+                            size = .label_size) +
       ggplot2::geom_point(size = .point_size, fill = "white", stroke = .stroke)
   # scales and theme.
   rlt2 <- rlt +

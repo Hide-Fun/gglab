@@ -18,6 +18,7 @@
 #' @param .x_breaks break of x.
 #' @param .y_breaks break of y.
 #' @param .family font family, default Arial.
+#' @param .label_size label size.
 #' @param .lab_title_size axis title.
 #' @param .lab_text_size axis text.
 #' @param .ratio ratio of plot.
@@ -61,6 +62,7 @@
 #'           .y_breaks = scales::breaks_extended(6),
 #'           .point_size = 3,
 #'           .family = NULL,
+#'           .label_size = 4,
 #'           .lab_text_size = 15,
 #'           .lab_text_size = 12,
 #'           .ratio = 1/2)
@@ -88,7 +90,7 @@ auto_ggiso = function(.data,
       ggplot2::geom_errorbarh(height = .height, size = .linesize) +
       ggtext::geom_richtext(hjust = .hjust, vjust = .vjust,
                             fill = NA, label.color = NA,
-                            size = 6) +
+                            size = .label_size) +
       ggplot2::geom_point(size = .point_size, fill = "white", stroke = .stroke)
     # scales and theme
   rlt2 <- rlt +
