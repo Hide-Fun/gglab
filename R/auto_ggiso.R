@@ -22,6 +22,7 @@
 #' @param .lab_title_size axis title.
 #' @param .lab_text_size axis text.
 #' @param .ratio ratio of plot.
+#' @param .multi logical
 #' @param ... passed through theme().
 #' @export
 #' @examples
@@ -39,6 +40,21 @@
 #' place_A <- by_place %>%
 #'   filter(place == "A")
 #'
+#' # make plot (default).
+#' auto_ggiso(.data = place_A,
+#'            .mapping = aes(x = mean_delta13C, y = mean_delta15N,
+#'                           xmin = mean_delta13C - sd_delta13C,
+#'                           xmax = mean_delta13C + sd_delta13C,
+#'                           ymin = mean_delta15N - sd_delta15N,
+#'                           ymax = mean_delta15N + sd_delta15N,
+#'                           shape = label,
+#'                           label = label),
+#'           .xlim = c(-36, -26),
+#'           .ylim = c(-6, 4),
+#'           .x_breaks = seq(-36, -26, 2),
+#'           .y_breaks = seq(-6, 4, 2))
+#'
+#' # make plot (manual).
 #' auto_ggiso(.data = place_A,
 #'            .mapping = aes(x = mean_delta13C, y = mean_delta15N,
 #'                           xmin = mean_delta13C - sd_delta13C,
@@ -70,20 +86,22 @@ auto_ggiso = function(.data,
                       .mapping,
                       .xlim, .ylim,
                       .shape_val = c(16, 17, 24),
-                      .xlab, .ylab,
-                      .height = .2, .width = 0.2,
+                      .xlab = expression(paste(italic("δ"^{13}), "C", " (\u2030)")),
+                      .ylab = expression(paste(italic("δ"^{15}), "N", " (\u2030)")),
+                      .height = .3, .width = 3,
                       .hjust = 0, .vjust = 0,
                       .x_breaks = scales::breaks_extended(6),
                       .y_breaks = scales::breaks_extended(6),
-                      .linesize = .8,
+                      .linesize = .6,
                       .stroke = 1,
-                      .point_size = 2,
-                      .axis_size = .8,
+                      .point_size = 3,
+                      .axis_size = .6,
                       .family = "Arial",
                       .lab_title_size = 15,
                       .lab_text_size = 12,
                       .label_size = 4,
-                      .ratio,
+                      .ratio = 2/3,
+                      .multi = F,
                       ...) {
   # calculate and slenderize ratio.
   stund <- (.xlim[2] - .xlim[1])/(.ylim[2] - .ylim[1])
