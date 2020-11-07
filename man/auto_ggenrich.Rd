@@ -11,15 +11,15 @@ auto_ggenrich(
   .mapping_ref,
   .xlim,
   .ylim,
-  .xlab,
-  .ylab,
+  .xlab = expression(paste(italic("ε"^{     13 }), "C", " (‰)")),
+  .ylab = expression(paste(italic("ε"^{     15 }), "N", " (‰)")),
   .point_size = 3,
   .stroke = 1,
   .shape_val = c(16, 17, 24),
-  .width = 0.2,
-  .height = 0.2,
-  .linesize = 0.8,
-  .axis_size = 0.8,
+  .width = 0.3,
+  .height = 0.3,
+  .linesize = 0.6,
+  .axis_size = 0.6,
   .linetype = "dashed",
   .hjust = 0,
   .vjust = 0,
@@ -29,7 +29,8 @@ auto_ggenrich(
   .label_size = 4,
   .lab_title_size = 15,
   .lab_text_size = 12,
-  .ratio,
+  .ratio = 2/3,
+  .multi = F,
   ...
 )
 }
@@ -82,6 +83,8 @@ auto_ggenrich(
 
 \item{.ratio}{ratio of plot.}
 
+\item{.multi}{logical}
+
 \item{...}{passed through theme().}
 }
 \description{
@@ -90,6 +93,7 @@ Make enrichment factor plot. If you regulate more options, use ggenrich().
 \examples{
 library(ggplot2)
 library(dplyr)
+library(stringr)
 
 data("demo")
 
@@ -98,27 +102,20 @@ by_place <- demo \%>\%
   group_by(place, label) \%>\%
   summarise(across(where(is.numeric),
                    list(mean = mean, sd = sd),
-                   .names = "{.fn}_{.col}"))
-
-ref <- demo \%>\%
-    filter(type == "REF") \%>\%
-    group_by(place, label) \%>\%
-    summarise(across(where(is.numeric),
-                     list(mean = mean, sd = sd),
-                     .names = "{.fn}_{.col}"))
+                   .names = "{.fn}_{.col}")) \%>\%
+  filter(place == "A")
 
 # select "place is A".
-place_A <- by_place \%>\%
-    filter(place == "A")
+val <- by_place \%>\%
+  filter(str_detect(label, "target"))
 
 # reference data.
-place_A_ref <- ref \%>\%
-    filter(place == "A")
+ref <- by_place \%>\%
+ filter(str_detect(label, "ref"))
 
-
-# make plot.
-auto_ggenrich(.data = place_A,
-              .data_ref = place_A_ref,
+# make plot (default).
+auto_ggenrich(.data = val,
+              .data_ref = ref,
               .mapping = aes(x = mean_epsilon13C, y = mean_epsilon15N,
                              xmin = mean_epsilon13C - sd_epsilon13C,
                              xmax = mean_epsilon13C + sd_epsilon13C,
@@ -130,8 +127,28 @@ auto_ggenrich(.data = place_A,
                                  xmax = mean_epsilon13C + sd_epsilon13C,
                                  ymin = mean_epsilon15N - sd_epsilon15N,
                                  ymax = mean_epsilon15N + sd_epsilon15N),
-              .xlim = c(-36, -26),
-              .ylim = c(-6, 4),
+              .xlim = c(-5, 3),
+              .ylim = c(-3, 5),
+              .family = NULL,
+              .x_breaks = seq(-5, 3, 1),
+              .y_breaks = seq(-3, 5, 1))
+
+# make plot (manual).
+auto_ggenrich(.data = val,
+              .data_ref = ref,
+              .mapping = aes(x = mean_epsilon13C, y = mean_epsilon15N,
+                             xmin = mean_epsilon13C - sd_epsilon13C,
+                             xmax = mean_epsilon13C + sd_epsilon13C,
+                             ymin = mean_epsilon15N - sd_epsilon15N,
+                             ymax = mean_epsilon15N + sd_epsilon15N,
+                             shape = label,
+                             label = label),
+              .mapping_ref = aes(xmin = mean_epsilon13C - sd_epsilon13C,
+                                 xmax = mean_epsilon13C + sd_epsilon13C,
+                                 ymin = mean_epsilon15N - sd_epsilon15N,
+                                 ymax = mean_epsilon15N + sd_epsilon15N),
+              .xlim = c(-5, 3),
+              .ylim = c(-3, 5),
               .xlab = expression(paste(italic("δ"^{13}), "C", " (\u2030)")),
               .ylab = expression(paste(italic("δ"^{15}), "N", " (\u2030)")),
               .hjust = 0, .vjust = 0,
@@ -147,5 +164,6 @@ auto_ggenrich(.data = place_A,
               .lab_text_size = 12,
               .label_size = 4,
               .point_size = 3,
-              .ratio = 1/2)
+              .ratio = 1/2,
+              .multi = F)
 }

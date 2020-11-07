@@ -51,6 +51,7 @@
 #'                           label = label),
 #'           .xlim = c(-36, -26),
 #'           .ylim = c(-6, 4),
+#'           .family = NULL,
 #'           .x_breaks = seq(-36, -26, 2),
 #'           .y_breaks = seq(-6, 4, 2))
 #'

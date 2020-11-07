@@ -67,12 +67,13 @@
 #'                                  ymax = mean_epsilon15N + sd_epsilon15N),
 #'               .xlim = c(-5, 3),
 #'               .ylim = c(-3, 5),
+#'               .family = NULL,
 #'               .x_breaks = seq(-5, 3, 1),
 #'               .y_breaks = seq(-3, 5, 1))
 #'
 #' # make plot (manual).
-#' auto_ggenrich(.data = place_A,
-#'               .data_ref = place_A_ref,
+#' auto_ggenrich(.data = val,
+#'               .data_ref = ref,
 #'               .mapping = aes(x = mean_epsilon13C, y = mean_epsilon15N,
 #'                              xmin = mean_epsilon13C - sd_epsilon13C,
 #'                              xmax = mean_epsilon13C + sd_epsilon13C,

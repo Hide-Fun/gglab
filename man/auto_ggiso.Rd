@@ -10,23 +10,24 @@ auto_ggiso(
   .xlim,
   .ylim,
   .shape_val = c(16, 17, 24),
-  .xlab,
-  .ylab,
-  .height = 0.2,
-  .width = 0.2,
+  .xlab = expression(paste(italic("δ"^{     13 }), "C", " (‰)")),
+  .ylab = expression(paste(italic("δ"^{     15 }), "N", " (‰)")),
+  .height = 0.3,
+  .width = 3,
   .hjust = 0,
   .vjust = 0,
   .x_breaks = scales::breaks_extended(6),
   .y_breaks = scales::breaks_extended(6),
-  .linesize = 0.8,
+  .linesize = 0.6,
   .stroke = 1,
-  .point_size = 2,
-  .axis_size = 0.8,
+  .point_size = 3,
+  .axis_size = 0.6,
   .family = "Arial",
   .lab_title_size = 15,
   .lab_text_size = 12,
   .label_size = 4,
-  .ratio,
+  .ratio = 2/3,
+  .multi = F,
   ...
 )
 }
@@ -73,6 +74,8 @@ auto_ggiso(
 
 \item{.ratio}{ratio of plot.}
 
+\item{.multi}{logical}
+
 \item{...}{passed through theme().}
 }
 \description{
@@ -93,6 +96,22 @@ by_place <- demo \%>\%
 place_A <- by_place \%>\%
   filter(place == "A")
 
+# make plot (default).
+auto_ggiso(.data = place_A,
+           .mapping = aes(x = mean_delta13C, y = mean_delta15N,
+                          xmin = mean_delta13C - sd_delta13C,
+                          xmax = mean_delta13C + sd_delta13C,
+                          ymin = mean_delta15N - sd_delta15N,
+                          ymax = mean_delta15N + sd_delta15N,
+                          shape = label,
+                          label = label),
+          .xlim = c(-36, -26),
+          .ylim = c(-6, 4),
+          .family = NULL,
+          .x_breaks = seq(-36, -26, 2),
+          .y_breaks = seq(-6, 4, 2))
+
+# make plot (manual).
 auto_ggiso(.data = place_A,
            .mapping = aes(x = mean_delta13C, y = mean_delta15N,
                           xmin = mean_delta13C - sd_delta13C,
