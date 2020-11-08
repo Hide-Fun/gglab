@@ -14,12 +14,11 @@ auto_ggenrich(
   .xlab = expression(paste(italic("ε"^{     13 }), "C", " (‰)")),
   .ylab = expression(paste(italic("ε"^{     15 }), "N", " (‰)")),
   .point_size = 3,
-  .stroke = 1,
+  .stroke = 0.82,
   .shape_val = c(16, 17, 24),
-  .width = 0.3,
-  .height = 0.3,
-  .linesize = 0.6,
-  .axis_size = 0.6,
+  .cross_tip = 0.15,
+  .linesize = 0.55,
+  .axis_size = 0.55,
   .linetype = "dashed",
   .hjust = 0,
   .vjust = 0,
@@ -31,6 +30,8 @@ auto_ggenrich(
   .lab_text_size = 12,
   .ratio = 2/3,
   .multi = F,
+  .scaling = F,
+  .scale_var = NULL,
   ...
 )
 }
@@ -57,9 +58,7 @@ auto_ggenrich(
 
 \item{.shape_val}{shape of point, passing scale_shape_manual().}
 
-\item{.width}{width of error bar.}
-
-\item{.height}{height of error bar.}
+\item{.cross_tip}{width and height of errorbar.}
 
 \item{.linesize}{width of line in error bar.}
 
@@ -84,6 +83,10 @@ auto_ggenrich(
 \item{.ratio}{ratio of plot.}
 
 \item{.multi}{logical}
+
+\item{.scaling}{logical}
+
+\item{.scale_var}{numeric}
 
 \item{...}{passed through theme().}
 }
@@ -152,7 +155,7 @@ auto_ggenrich(.data = val,
               .xlab = expression(paste(italic("δ"^{13}), "C", " (\u2030)")),
               .ylab = expression(paste(italic("δ"^{15}), "N", " (\u2030)")),
               .hjust = 0, .vjust = 0,
-              .height = .2, .width = .2,
+              .cross_tip = .3,
               .stroke = 1,
               .linesize = .8,
               .axis_size = .8,

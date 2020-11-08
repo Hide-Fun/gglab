@@ -12,22 +12,23 @@ auto_ggiso(
   .shape_val = c(16, 17, 24),
   .xlab = expression(paste(italic("δ"^{     13 }), "C", " (‰)")),
   .ylab = expression(paste(italic("δ"^{     15 }), "N", " (‰)")),
-  .height = 0.3,
-  .width = 3,
+  .cross_tip = 0.15,
   .hjust = 0,
   .vjust = 0,
   .x_breaks = scales::breaks_extended(6),
   .y_breaks = scales::breaks_extended(6),
-  .linesize = 0.6,
-  .stroke = 1,
+  .stroke = 82,
   .point_size = 3,
-  .axis_size = 0.6,
+  .linesize = 0.55,
+  .axis_size = 0.55,
   .family = "Arial",
   .lab_title_size = 15,
   .lab_text_size = 12,
   .label_size = 4,
   .ratio = 2/3,
   .multi = F,
+  .scaling = F,
+  .scale_var = NULL,
   ...
 )
 }
@@ -46,9 +47,7 @@ auto_ggiso(
 
 \item{.ylab}{title of y axis.}
 
-\item{.height}{height of errorbar.}
-
-\item{.width}{width of errorbar.}
+\item{.cross_tip}{width and height of errorbar.}
 
 \item{.hjust}{place of label (horizontal).}
 
@@ -58,11 +57,11 @@ auto_ggiso(
 
 \item{.y_breaks}{break of y.}
 
-\item{.linesize}{width of line in errorbar.}
-
 \item{.stroke}{edge of point}
 
 \item{.point_size}{size of point.}
+
+\item{.linesize}{width of line in errorbar.}
 
 \item{.family}{font family, default Arial.}
 
@@ -75,6 +74,10 @@ auto_ggiso(
 \item{.ratio}{ratio of plot.}
 
 \item{.multi}{logical}
+
+\item{.scaling}{logical}
+
+\item{.scale_var}{numeric}
 
 \item{...}{passed through theme().}
 }
@@ -126,7 +129,7 @@ auto_ggiso(.data = place_A,
           .ylab = expression(paste(italic("δ"^{15}), "N", " (\u2030)")),
           .hjust = 0,
           .vjust = 0,
-          .height = .2, .width = .2,
+          .cross_tip = .3,
           .shape_val = c(24, 21, 16, 23),
           .stroke = 1,
           .axis_size = .8,
