@@ -17,7 +17,7 @@ auto_ggiso(
   .vjust = 0,
   .x_breaks = scales::breaks_extended(6),
   .y_breaks = scales::breaks_extended(6),
-  .stroke = 82,
+  .stroke = 0.82,
   .point_size = 3,
   .linesize = 0.55,
   .axis_size = 0.55,
