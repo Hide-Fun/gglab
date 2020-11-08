@@ -22,6 +22,8 @@
 #' @param .lab_text_size axis text.
 #' @param .ratio ratio of plot.
 #' @param .multi logical
+#' @param .scaling logical
+#' @param .scale_var numeric
 #' @param ... passed through theme().
 #' @export
 #' @examples
@@ -102,13 +104,18 @@ auto_ggiso = function(.data,
                       .label_size = 4,
                       .ratio = 2/3,
                       .multi = F,
+                      .scaling = F,
+                      .scale_var = NULL,
                       ...) {
+  if(.scaling == T) {
+    .cross_tip <- .cross_tip*((.ylim[2] - .ylim[1])/(.scale_var[2] - .scale_var[1]))
+  }
   # calculate and slenderize ratio.
   stund <- (.xlim[2] - .xlim[1])/(.ylim[2] - .ylim[1])
   # make plot.
   rlt <- ggplot2::ggplot(.data, .mapping) +
-      ggplot2::geom_errorbar(width = .width*(stund)*(.ratio), size = .linesize) +
-      ggplot2::geom_errorbarh(height = .height, size = .linesize) +
+      ggplot2::geom_errorbar(width = .cross_tip*(stund)*(.ratio), size = .linesize) +
+      ggplot2::geom_errorbarh(height = .cross_tip, size = .linesize) +
       ggtext::geom_richtext(hjust = .hjust, vjust = .vjust,
                             fill = NA, label.color = NA,
                             size = .label_size) +
