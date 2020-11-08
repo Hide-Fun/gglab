@@ -12,8 +12,7 @@
 #' @param .point_size size of point.
 #' @param .stroke edge of point
 #' @param .shape_val shape of point, passing scale_shape_manual().
-#' @param .width width of error bar.
-#' @param .height height of error bar.
+#' @param .cross_tip width and height of errorbar.
 #' @param .linesize width of line in error bar.
 #' @param .linetype dashed or dotted and so on.
 #' @param .hjust place of label (horizontal).
@@ -90,7 +89,7 @@
 #'               .xlab = expression(paste(italic("δ"^{13}), "C", " (\u2030)")),
 #'               .ylab = expression(paste(italic("δ"^{15}), "N", " (\u2030)")),
 #'               .hjust = 0, .vjust = 0,
-#'               .height = .2, .width = .2,
+#'               .cross_tip = .3,
 #'               .stroke = 1,
 #'               .linesize = .8,
 #'               .axis_size = .8,
@@ -115,7 +114,7 @@ auto_ggenrich = function(
   .point_size = 3,
   .stroke = 1,
   .shape_val = c(16, 17, 24),
-  .width = .3, .height = .3,
+  .cross_tip = .15,
   .linesize = .6,
   .axis_size = .6,
   .linetype = "dashed",
@@ -141,8 +140,8 @@ auto_ggenrich = function(
                           linetype = .linetype, size = .linesize) +
       ggplot2::geom_rect(data = .data_ref, mapping = .mapping_ref,
                          fill = NA, colour = "#028760", size = .linesize) +
-      ggplot2::geom_errorbar(width = .width*(stund)*(.ratio), size = .linesize) +
-      ggplot2::geom_errorbarh(height = .height, size = .linesize) +
+      ggplot2::geom_errorbar(width = .cross_tip*(stund)*(.ratio), size = .linesize) +
+      ggplot2::geom_errorbarh(height = .cross_tip, size = .linesize) +
       ggtext::geom_richtext(hjust = .hjust, vjust = .vjust,
                             fill = NA, label.color = NA,
                             size = .label_size) +

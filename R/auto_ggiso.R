@@ -10,8 +10,7 @@
 #' @param .point_size size of point.
 #' @param .stroke edge of point
 #' @param .shape_val shape of point, passing scale_shape_manual().
-#' @param .width width of errorbar.
-#' @param .height height of errorbar.
+#' @param .cross_tip width and height of errorbar.
 #' @param .linesize width of line in errorbar.
 #' @param .hjust place of label (horizontal).
 #' @param .vjust place of label (vertical).
@@ -70,7 +69,7 @@
 #'           .ylab = expression(paste(italic("δ"^{15}), "N", " (\u2030)")),
 #'           .hjust = 0,
 #'           .vjust = 0,
-#'           .height = .2, .width = .2,
+#'           .cross_tip = .3,
 #'           .shape_val = c(24, 21, 16, 23),
 #'           .stroke = 1,
 #'           .axis_size = .8,
@@ -89,7 +88,7 @@ auto_ggiso = function(.data,
                       .shape_val = c(16, 17, 24),
                       .xlab = expression(paste(italic("δ"^{13}), "C", " (\u2030)")),
                       .ylab = expression(paste(italic("δ"^{15}), "N", " (\u2030)")),
-                      .height = .3, .width = 3,
+                      .cross_tip = .15,
                       .hjust = 0, .vjust = 0,
                       .x_breaks = scales::breaks_extended(6),
                       .y_breaks = scales::breaks_extended(6),
